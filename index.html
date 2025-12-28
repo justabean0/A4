@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Todolist</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    body{
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: rgb(49, 95, 200);
+      box-sizing: border-box;
+      font-family: 'Roboto',Arial;
+    }
+    .mainPage{
+      width: 370px;
+      background-color: white;
+      padding: 20px 16px;
+      border-radius: 8px;
+    }
+    .addSection{
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 30px;
+    }
+    .add{
+      height: 38px;
+      width: 72px;
+      color: white;
+      background-color:rgb(60, 105, 232);
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      font-size: 15px;
+      text-align: center;
+    }
+    input{
+      width: 276px;
+      border-radius: 5px;
+      border: 1px solid;
+      font-size: 15px;
+    }
+    input:focus{
+      border-width: 2px;
+      border-color:rgb(30, 171, 231);
+      outline: none;
+      font-size: 15px;
+      padding-left: 8px;
+    }
+        .taskItem {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: rgb(197, 224, 228);
+      padding: 10px;
+      border-radius: 6px;
+      margin-bottom: 10px;
+    }
+
+    .taskItem p {
+      margin: 0;
+      font-size: 14px;
+    }
+
+    .del {
+      background-color: rgb(60, 105, 232);
+      border: none;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+      padding: 6px 8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="mainPage">
+    <div class="addSection">
+      <input type="text" class="text">
+      <button class="add">Add</button>
+    </div>
+    <div class="listSection">
+      
+    </div>
+  </div>
+  <script>
+        const input = document.querySelector(".text");
+    const addBtn = document.querySelector(".add");
+    const listSection = document.querySelector(".listSection");
+
+    addBtn.addEventListener("click", function () {
+      const taskText = input.value.trim();
+
+      if (taskText === "") return;
+
+      const taskDiv = document.createElement("div");
+      taskDiv.className = "taskItem";
+
+      const p = document.createElement("p");
+      p.textContent = taskText;
+
+      const delB = document.createElement("button");
+      delB.className = "del";
+      delB.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <polyline points="3 6 5 6 21 6"></polyline> <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"></path> <path d="M10 11v6"></path> <path d="M14 11v6"></path> <path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"></path> </svg>`;
+      delB.addEventListener("click", function () {
+        taskDiv.remove();
+      });
+
+      taskDiv.appendChild(p);
+      taskDiv.appendChild(delB);
+      listSection.appendChild(taskDiv);
+
+      input.value = "";
+    });
+  </script>
+</body>
+</html>
